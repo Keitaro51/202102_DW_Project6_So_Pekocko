@@ -1,2 +1,4 @@
 *.pdf
 node_modules
+.env
+dwj-projet6
