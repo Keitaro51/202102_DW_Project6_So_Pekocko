@@ -1,4 +1,9 @@
 *.pdf
+*.jpg
+*.jpeg
+*.png
 node_modules
 .env
 dwj-projet6
+.eslintrc.json
+jsconfig.json
