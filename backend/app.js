@@ -1,6 +1,5 @@
 const express = require('express');
 const app = express();
-const bodyParser = require('body-parser');
 const mongoose = require('mongoose');
 const path = require('path');
 const sauceRoutes = require('./routes/sauce');
@@ -27,7 +26,7 @@ app.use((req, res, next) => {
 });
 
 //extract JSON object from request body
-app.use(bodyParser.json()); 
+app.use(express.json()); 
 
 //api routes
 app.use('/images', express.static(path.join(__dirname, 'images')));

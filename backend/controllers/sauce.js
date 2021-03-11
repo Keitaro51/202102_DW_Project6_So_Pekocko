@@ -4,7 +4,7 @@ const fs = require('fs');
 
 exports.createSauce = (req, res, next) => {
   const sauceObject = JSON.parse(req.body.sauce);
-  delete sauceObject._id; //necessaire dans ce projet?
+  delete sauceObject._id;
   const sauce = new Sauce({
     ...sauceObject,
     "likes" : 0,
@@ -55,8 +55,6 @@ exports.deleteSauce = (req, res, next) => {
 exports.likeSauce = (req, res, next) => {
   Sauce.findOne({_id:req.params.id})
     .then(sauce => {
-      //en cours de tests//
-      console.log(sauce.likes, sauce.usersLiked, sauce.dislikes, sauce.usersDisliked);
       switch (req.body.like){
         case 1:
           sauce.usersLiked.push(req.body.userId);
@@ -79,7 +77,6 @@ exports.likeSauce = (req, res, next) => {
           };
           break;
       };
-      console.log(sauce.likes, sauce.usersLiked, sauce.dislikes, sauce.usersDisliked);
       sauce.save()
         .then(() => res.status(201).json({ message: 'Avis mis à jour' }))
         .catch(error => res.status(400).json({ error }));
